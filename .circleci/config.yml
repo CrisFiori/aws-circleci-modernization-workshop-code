@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  snyk: snyk/snyk@1.4.0
+  snyk: snyk/snyk@1.2.3
   aws-cli: circleci/aws-cli@2.0.2
   node: circleci/node@4.2.0
   docker: circleci/docker@1.5.0
@@ -78,7 +78,7 @@ jobs:
           root: /tmp/ecs/
           paths:
             - "*"      
-      - run: sleep 90       
+      - run: sleep 90
   smoketest_deployment:
     machine:
       image: ubuntu-2004:202101-01
@@ -91,7 +91,7 @@ jobs:
           name: Smoke Test ECS Deployment
           command: |
             source /tmp/ecs/endpoint
-            ./test/smoke_test $ENDPOINT     
+            ./test/smoke_test $ENDPOINT
   destroy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
@@ -110,7 +110,7 @@ jobs:
       - terraform/plan:
           path: ./terraform/ecs
       - terraform/destroy:
-          path: ./terraform/ecs      
+          path: ./terraform/ecs
 workflows:
   build:
     jobs:
@@ -129,5 +129,4 @@ workflows:
             - smoketest_deployment
       - destroy_aws_ecs:
           requires:
-            - approve_destroy          
-                    
+            - approve_destroy
