@@ -1,7 +1,7 @@
 terraform {
   required_version = ">= 0.13.5"
   backend "remote" {
-    organization = "[Your Org Name]"
+    organization = "test-circleci"
 
     workspaces {
       name = "arm-aws-ecs"
